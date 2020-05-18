@@ -31,7 +31,8 @@ module.exports = (env, argv) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: "./src/index.html"
-      })
+      }),
+      new CopyPlugin([{ from: '_redirects', to: '' }]),
     ],
     resolve: {
       extensions: [".js", ".jsx"]
