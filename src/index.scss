@@ -1,0 +1,150 @@
+header {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.create-btn {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+  padding-right: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, .2);
+}
+
+button {
+  background-color: #fff;
+  height: 40px;
+  border: 1px solid #ccc;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 15px;
+}
+
+.today-btn {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.month {
+  display: flex;
+  margin: 15px;
+  font-size: 24px;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto;
+}
+
+
+.arrow-btn{
+  border: none;
+  
+}
+
+.week{
+  display: flex;
+  justify-content: space-around;
+}
+
+.day_date{
+  display: flex;
+  flex-direction: column;
+}
+
+.day_date:first-child{
+  margin-left: 60px;
+}
+
+.day-header{
+  margin-top: 20px;
+  font-weight: 500;
+  color: #70757b;
+}
+
+.date{
+  
+  font-weight: 500;
+  font-size: 24px;
+  // &__choosen{
+  //   border-radius: 50%;
+  //   color: #fff;
+  //   background-color: #1a73e8;
+  //   padding: 20px;
+  // }
+}
+
+.timeScale {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  //background-color: blueviolet;
+  width: 5.5%;
+
+}
+
+.hour-scale{
+  display: flex;
+  margin: 18px;
+  color: #70757b;
+  font-size: 13px;
+  height: 24px;
+}
+
+.main{
+  display: flex;
+ position: relative;
+  width: 95%;
+  z-index: -1;
+}
+
+.headers{
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  opacity: 100%;
+}
+
+.space-week{
+  height: 140px;
+  // background-color: blue;
+}
+.space{
+  height: 170px;
+  // background-color: blue;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #b4b5b8;
+  height: 100%;
+  
+  width: 100%;
+}
+.day:last-child{
+  border-right: 1px solid #b4b5b8;
+  height: 100%;
+  
+  width: 100%;
+}
+
+.days{
+  display: flex;
+  width: 94.3vw;
+  //position: relative;
+}
+
+.hour{
+  
+  border-bottom: 1px solid #b4b5b8;
+  height: 60px;
+  
+  width: 100%;
+}

@@ -1,35 +1,25 @@
-// import { getItem, setItem } from '../common/storage.js';
-// import { renderWeek } from '../calendar/calendar.js';
-// import { renderHeader } from '../calendar/header.js';
-// import { getStartOfWeek, getDisplayedMonth } from '../common/time.utils.js';
+import React, { Component } from "react";
 
-// const navElem = document.querySelector('.navigation');
-// const displayedMonthElem = document.querySelector('.navigation__displayed-month');
+class Header extends Component {
+  
+  render() {
 
-// function renderCurrentMonth() {
-//     // отрисовать месяц, к которому относиться текущая неделя (getDisplayedMonth)
-//     // вставить в .navigation__displayed-month
-// }
-
-// const onChangeWeek = event => {
-//     // при переключении недели обновите displayedWeekStart в storage
-//     // и перерисуйте все необходимые элементы страницы (renderHeader, renderWeek, renderCurrentMonth)
-// };
-
-// export const initNavigation = () => {
-//     renderCurrentMonth();
-//     navElem.addEventListener('click', onChangeWeek);
-// };
-
-import React from 'react';
-
-const Header = () => {
-    <header>
-        <button ><i class="large material-icons">add</i></button>
-        <button ></button>
-        <button></button>
-        <button></button>
-<div></div>
+    return (
+      <header>
+      <button className="create-btn">
+        <i className="small material-icons">add</i>Создать
+      </button>
+      <button className="today-btn">Сегодня</button>
+      <button className="arrow-btn" onClick={this.props.prevWeek}>
+        <i className="small material-icons" >chevron_left</i>
+      </button>
+      <button className="arrow-btn" onClick={this.props.nextWeek}>
+        <i className="small material-icons">chevron_right</i>
+      </button>
+      <div className="month">Янв - Февр 2020</div>
     </header>
-
+  );
 }
+};
+
+export default Header;
