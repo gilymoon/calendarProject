@@ -1,16 +1,15 @@
-import React from 'react';
-import Days from './Days';
+import React, { Component } from "react";
+import Days from "./Days";
 
-const WeekTable = () => {
-return (
-  
-  
-  <div className="weekTable">
-    <div className="space-week"></div>
-    <Days className="days"/>
-  </div>
-  
-)
+class WeekTable extends Component {
+  render() {
+    return (
+      <div className="weekTable">
+        <div className="space-week"></div>
+        <Days events={this.props.events} className="days" monday={this.props.monday}/>
+      </div>
+    );
+  }
 }
 
 export default WeekTable;

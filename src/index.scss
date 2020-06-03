@@ -148,3 +148,25 @@ button {
   
   width: 100%;
 }
+
+.event{
+  border-radius: 10%;
+  background-color: #c6dafc;
+  padding: 10px;
+}
+
+.modalWindow{
+  height: 500px;
+  width: 500px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  position: fixed;
+  box-shadow: 4px 16px 27px -15px #000000;
+
+}
+
+.times{
+  display: flex;
+}
