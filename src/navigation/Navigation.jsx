@@ -2,15 +2,8 @@ import React, { Component } from "react";
 import { generateWeekRange } from "../functions";
 
 class Navigation extends Component {
-
-
-  
-  
-
   render() {
-    const week =  generateWeekRange(this.props.monday);
-    console.log(week[0].getDate());
-    
+    const week = generateWeekRange(this.props.monday);
     return (
       <div className="week">
         <div className="day_date">

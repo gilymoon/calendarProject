@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
- const defaultFormState = {
+const defaultFormState = {
   title: "Add title of your event",
   date: "",
   startTime: "",
@@ -13,33 +13,24 @@ class ModalWindow extends Component {
     modalEvents: defaultFormState,
   };
 
-  
-  
   createEventObj = (e) => {
     e.preventDefault();
-console.log(this.state.modalEvents);
-
-    // if (Object.values(this.state.modalEvents).some((el) => el === "")) {
-    //     console.log("no values");
-    //     return;
-    // }
+    console.log(this.state.modalEvents);
 
     this.props.pushObjEvent(this.state.modalEvents);
-    this.props.handleEvent()
-    // this.clearForm(); // try to commit
-    // this.hidePopup();
-};
+    this.props.handleEvent();
+  };
 
-inputHandler = (e) => {
-  const { name, value } = e.target;
+  inputHandler = (e) => {
+    const { name, value } = e.target;
 
-  this.setState({
-    modalEvents: {
-         ...this.state.modalEvents,
-          [name]: value,
+    this.setState({
+      modalEvents: {
+        ...this.state.modalEvents,
+        [name]: value,
       },
-  });
-};
+    });
+  };
   render() {
     return (
       <form className="modalWindow" onSubmit={this.createEventObj}>
@@ -76,7 +67,7 @@ inputHandler = (e) => {
           name="description"
           onChange={this.inputHandler}
         />
-        <button type="submit" className="save-btn" >
+        <button type="submit" className="save-btn">
           Сохранить
         </button>
       </form>

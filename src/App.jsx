@@ -4,7 +4,9 @@ import Navigation from "./navigation/Navigation";
 import Main from "./mainPart/main";
 import { getStartOfWeek } from "./functions";
 import ModalWindow from "./ModalWindow";
-// import moment from "moment"
+import { createEvent } from "./server/Gateway";
+import { fetchEventsList } from "./server/Gateway";
+import { deleteEvent } from "./server/Gateway";
 
 class App extends Component {
   state = {
@@ -19,7 +21,6 @@ class App extends Component {
     this.setState({
       monday: futureMonday,
     });
-    //return this.state.monday.setDate(this.state.monday.getDate()+7);
   };
 
   prevWeek = () => {
@@ -29,7 +30,6 @@ class App extends Component {
     this.setState({
       monday: futureMonday,
     });
-    // return this.state.monday.setDate(this.state.monday.getDate()-7);
   };
 
   onToday = () => {
@@ -38,10 +38,50 @@ class App extends Component {
     });
   };
 
-  pushObjEvent = (obj) => {
-    this.setState({
-      events: [...this.state.events, obj],
-    });
+  setMonth = (month) => {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    switch (getStartOfWeek(this.props.monday).getMonth()) {
+      case 0:
+        return months[0];
+      case 1:
+        return months[1];
+      case 2:
+        return months[2];
+      case 3:
+        return months[3];
+      case 4:
+        return months[4];
+      case 5:
+        return months[5];
+      case 6:
+        return months[6];
+      case 7:
+        return months[7];
+      case 8:
+        return months[8];
+      case 9:
+        return months[9];
+      case 10:
+        return months[10];
+      case 11:
+        return months[11];
+      default:
+        break;
+    }
   };
 
   handleEvent = () => {
@@ -50,13 +90,39 @@ class App extends Component {
     });
   };
 
+  componentDidMount() {
+    this.onToday();
+    this.fetchEvents();
+  }
+
+  fetchEvents = () => {
+    fetchEventsList().then((eventsList) => {
+      this.setState({
+        events: eventsList,
+      });
+    });
+  };
+
+  createNewEvent = async (newEventData) => {
+    const newCalendar = await createEvent(newEventData);
+    this.fetchEvents();
+
+    console.log("newCalendar:= ", newCalendar);
+  };
+
+  handleEventDelete = (id) => {
+    deleteEvent(id).then(() => this.fetchEvents());
+  };
+
   render() {
-    console.log(this.state.monday);
+    console.log(getStartOfWeek(this.state.monday).getFullYear());
+    let month = getStartOfWeek(this.state.monday).getMonth();
+    let year = getStartOfWeek(this.state.monday).getFullYear();
     let creatingEvent;
     if (this.state.createNewEvent) {
       creatingEvent = (
         <ModalWindow
-          pushObjEvent={this.pushObjEvent}
+          pushObjEvent={this.createNewEvent}
           handleEvent={this.handleEvent}
         />
       );
@@ -72,11 +138,17 @@ class App extends Component {
             onToday={this.onToday}
             handleEvent={this.handleEvent}
             events={this.state.events}
+            month={month}
+            year={year}
           />
           <Navigation monday={this.state.monday} />
         </div>
         {creatingEvent}
-        <Main events={this.state.events} monday={this.state.monday} />
+        <Main
+          handleEventDelete={this.handleEventDelete}
+          events={this.state.events}
+          monday={this.state.monday}
+        />
       </>
     );
   }

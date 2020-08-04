@@ -30,7 +30,12 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "core-js": "^3.6.5",
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
     "moment": "^2.24.0",
     "moment-js": "^1.1.15",
     "prop-types": "^15.7.2",

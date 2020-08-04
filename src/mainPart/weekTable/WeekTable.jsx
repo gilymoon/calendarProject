@@ -6,7 +6,12 @@ class WeekTable extends Component {
     return (
       <div className="weekTable">
         <div className="space-week"></div>
-        <Days events={this.props.events} className="days" monday={this.props.monday}/>
+        <Days
+          handleEventDelete={this.props.handleEventDelete}
+          events={this.props.events}
+          className="days"
+          monday={this.props.monday}
+        />
       </div>
     );
   }

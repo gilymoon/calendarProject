@@ -7,7 +7,11 @@ class Main extends Component {
     return (
       <div className="main">
         <TimeScale />
-        <WeekTable events={this.props.events} monday={this.props.monday}/>
+        <WeekTable
+          handleEventDelete={this.props.handleEventDelete}
+          events={this.props.events}
+          monday={this.props.monday}
+        />
       </div>
     );
   }

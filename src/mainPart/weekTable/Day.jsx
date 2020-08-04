@@ -1,37 +1,103 @@
 import React, { Component } from "react";
 import Hour from "./Hour";
+import moment from "moment";
 
 class Day extends Component {
+  state = {
+    redLine: new Date(),
+    displayRedLine: false,
+    top: 0,
+  };
+
+  generateNums = () => {
+    let arr = [];
+    for (let i = 0; i < 24; i++) {
+      arr[i] = i;
+    }
+    return arr;
+  };
+  getHoursWithEventsArr = (event, dayDate) => {
+    const formatDate = moment(dayDate).format("YYYY-MM-DD");
+    const filterEvents = event.filter(
+      (eventObj) => eventObj.date === formatDate
+    );
+    const hoursArr = this.generateNums().map((num) => {
+      if (num - 10 < 0) {
+        return {
+          hours: `0${num}:00`,
+          events: filterEvents.filter(
+            (eventObj) => eventObj.startTime.substr(0, 2) === `0${num}`
+          ),
+        };
+      } else
+        return {
+          hours: `${num}:00`,
+          events: filterEvents.filter(
+            (eventObj) => eventObj.startTime.substr(0, 2) === num + ""
+          ),
+        };
+    });
+
+    return hoursArr;
+  };
+
+  componentDidMount() {
+    this.displayRedLine();
+    this.getSecondsToday();
+    setInterval(() => {
+      this.getSecondsToday();
+    }, 60000);
+  }
+
+  displayRedLine = () => {
+    if (
+      moment(this.props.day).format("YYYY-MM-DD") ===
+      moment(this.state.redLine).format("YYYY-MM-DD")
+    ) {
+      this.setState({
+        displayRedLine: true,
+      });
+    }
+  };
+
+  getSecondsToday = () => {
+    let now = new Date();
+    let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let diff = now - today;
+
+    if (
+      moment(this.props.day).format("YYYY-MM-DD") ===
+      moment(this.state.redLine).format("YYYY-MM-DD")
+    ) {
+      this.setState({
+        top: Math.round(diff / 60000 + 198),
+      });
+    }
+  };
+
   render() {
+    let hoursArrComplete = this.getHoursWithEventsArr(
+      this.props.events,
+      this.props.day
+    );
+
     return (
-      <div className="day">
-        <Hour events={this.props.events} day={this.props.day} hour={"00:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"01:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"02:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"03:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"04:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"05:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"06:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"07:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"08:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"09:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"10:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"11:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"12:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"13:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"14:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"15:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"16:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"17:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"18:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"19:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"20:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"21:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"22:00"} />
-        <Hour events={this.props.events} day={this.props.day} hour={"23:00"} />
+      <div key={this.props.events.id} className="day">
+        {this.state.displayRedLine ? (
+          <div className="red-line" style={{ top: `${this.state.top}px ` }}>
+            <div className="red-circle"></div>
+          </div>
+        ) : (
+          ""
+        )}
+        {hoursArrComplete.map((hour) => (
+          <Hour
+            handleEventDelete={this.props.handleEventDelete}
+            events={hour.events}
+          />
+        ))}
       </div>
     );
   }
 }
-
 export default Day;

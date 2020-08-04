@@ -1,4 +1,5 @@
 header {
+  background-color: #ffffff;
   display: flex;
   border-bottom: 1px solid #ccc;
 }
@@ -12,7 +13,7 @@ header {
   padding: 5px;
   padding-right: 20px;
   border: 1px solid #ccc;
-  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, .2);
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -42,34 +43,31 @@ button {
   font-family: Roboto;
 }
 
-
-.arrow-btn{
+.arrow-btn {
   border: none;
-  
 }
 
-.week{
+.week {
   display: flex;
   justify-content: space-around;
 }
 
-.day_date{
+.day_date {
   display: flex;
   flex-direction: column;
 }
 
-.day_date:first-child{
+.day_date:first-child {
   margin-left: 60px;
 }
 
-.day-header{
+.day-header {
   margin-top: 20px;
   font-weight: 500;
   color: #70757b;
 }
 
-.date{
-  
+.date {
   font-weight: 500;
   font-size: 24px;
   // &__choosen{
@@ -86,10 +84,9 @@ button {
   margin-left: 10px;
   //background-color: blueviolet;
   width: 5.5%;
-
 }
 
-.hour-scale{
+.hour-scale {
   display: flex;
   margin: 18px;
   color: #70757b;
@@ -97,25 +94,25 @@ button {
   height: 24px;
 }
 
-.main{
+.main {
   display: flex;
- position: relative;
+  position: relative;
   width: 95%;
-  z-index: -1;
 }
 
-.headers{
+.headers {
   position: fixed;
   width: 100%;
   background-color: #fff;
   opacity: 100%;
+  z-index: 2;
 }
 
-.space-week{
-  height: 140px;
+.space-week {
+  height: 200px;
   // background-color: blue;
 }
-.space{
+.space {
   height: 170px;
   // background-color: blue;
 }
@@ -125,37 +122,51 @@ button {
   flex-direction: column;
   border-left: 1px solid #b4b5b8;
   height: 100%;
-  
+
   width: 100%;
 }
-.day:last-child{
+.day:last-child {
   border-right: 1px solid #b4b5b8;
   height: 100%;
-  
+
   width: 100%;
 }
 
-.days{
+.days {
   display: flex;
   width: 94.3vw;
   //position: relative;
 }
 
-.hour{
-  
+.hour {
   border-bottom: 1px solid #b4b5b8;
   height: 60px;
-  
+
   width: 100%;
 }
 
-.event{
+.event {
+  position: relative;
   border-radius: 10%;
   background-color: #c6dafc;
   padding: 10px;
+  width: 175px;
+  height: 55px;
 }
 
-.modalWindow{
+.popup {
+  position: relative;
+  left: 80px;
+  top: 15px;
+  width: 135px;
+  height: 39px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 4px 16px 27px -15px #000000;
+  text-align: center;
+}
+
+.modalWindow {
   height: 500px;
   width: 500px;
   background-color: #ffffff;
@@ -164,9 +175,26 @@ button {
   z-index: 2;
   position: fixed;
   box-shadow: 4px 16px 27px -15px #000000;
-
 }
 
-.times{
+.times {
   display: flex;
+}
+
+.red-line {
+  width: 14.3%;
+  background-color: red;
+  height: 2px;
+  position: absolute; // and in Day in function +233 (pixels to start day)
+  // position: relative;
+}
+
+.red-circle {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+  top: -6px;
 }
