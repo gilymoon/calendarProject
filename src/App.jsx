@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./header/Header";
 import Navigation from "./navigation/Navigation";
-import Main from "./mainPart/main";
+import Main from "./mainPart/Main";
 import { getStartOfWeek } from "./functions";
 import ModalWindow from "./ModalWindow";
 import { createEvent } from "./server/Gateway";
